@@ -1,0 +1,68 @@
+\documentclass[12pt]{report}
+%\renewcommand{\chaptername}{Kapitel}
+% UTS Thesis style
+% Options
+%
+% 	demo 	Sets graphicx package to demo, 
+%			ie does not require the actual images files.
+%
+%   sans    Font
+%
+%	roman	Font
+%
+%	neverindent
+%
+% 201505
+
+%\usepackage[sans]{uts_thesis}
+
+\usepackage[sans]{uts_thesis}
+\usepackage{hyperref}
+
+\usepackage[style=authoryear,backend=bibtex8]{biblatex}
+\usepackage[ngerman]{babel}
+\usepackage{float}
+\usepackage[]{acronym}
+\usepackage{hyperref}
+\usepackage{subfiles}
+\usepackage[german]{algorithm2e}
+
+
+
+% use "disable" as argument for the todonotes package 
+% to switch of all todos and the todolist in the 
+% document. e.g. \usepackage[disable]{todonotes} 
+\usepackage[disable]{todonotes} 
+
+
+
+
+\addbibresource{./references.bib}
+\graphicspath{ {images/} }
+
+%\includeonly{abstract,introduction}
+
+\begin{document}
+% note using \include in main.tex instead of \input because of 
+%	1) .aux file caching 
+%	2) \includeonly
+% \include is equivalent to \input() \clearpage, 
+%	so it might not be appropriate inside chapters, use \input
+\include{title}
+
+\tableofcontents
+
+\listoftodos	% http://mirror.easyname.at/ctan/macros/latex/contrib/todonotes/todonotes.pdf
+
+\include{tex/einleitung}
+\include{tex/methode}
+\include{tex/varianten}
+
+\appendix
+
+\nocite{*}
+\printbibliography
+% Acronyms
+\subfile{./acronyms.tex}
+\include{tex/chapter/appendix}
+\end{document}

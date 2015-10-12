@@ -1,0 +1,48 @@
+%\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{uts_thesis}
+
+%% Demo option turns of images includes
+\DeclareOption{demo}{
+	\PassOptionsToPackage{demo}{graphicx}
+}
+
+%% 'sans serif' option
+\DeclareOption{sans}{
+  \renewcommand{\familydefault}{\sfdefault}
+}
+
+%% 'roman' option
+\DeclareOption{roman}{
+  \renewcommand{\familydefault}{\rmdefault}
+}
+
+%% Global indentation option
+\newif\if@neverindent\@neverindentfalse
+\DeclareOption{neverindent}{
+  \@neverindenttrue
+}
+
+\ExecuteOptions{roman}
+
+\ProcessOptions\relax
+
+\usepackage[utf8]{inputenc}
+\RequirePackage{lmodern}
+\RequirePackage{graphicx}
+
+
+%% Traditional LaTeX or TeX follows...
+% ...
+
+\newlength{\pardefault}
+\setlength{\pardefault}{\parindent}
+\newcommand{\neverindent}{ \setlength{\parindent}{0pt} }
+\newcommand{\autoindent}{ \setlength{\parindent}{\pardefault} }
+
+\if@neverindent
+\neverindent
+\fi
+
+% ...
+
+\endinput
